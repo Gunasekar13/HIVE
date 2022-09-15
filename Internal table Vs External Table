@@ -1,0 +1,13 @@
+INTERNAL TABLE :
+       # when your drop the internal table the data and meta will be deleted.
+       
+EXTERNAL TABLE :
+        # when you go to drop the External Table the meta data will be deleted from hive.
+        # But the actual data will be available in HDFS locations.
+        # We can able to recreate the table again.
+     If you want to delete data also use 'rmr' command to delete the data.
+     
+     
+EXTERNAL TABLE is best case because the data was use to work in multiple tech like Spark,hive,Pig.
+        
+
