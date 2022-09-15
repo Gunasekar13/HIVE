@@ -1,0 +1,44 @@
+Partition means separted the file to store.
+When your going to search file in HDFS . It search all files ,it will be taken more time.
+
+
+It Always Primary key type of partitions, Because more then one partition will be used.
+
+For Example:TABLE_NAME: EMPLOYEE
+EMPLOYEE_NAME     SALARY      COUNTRY
+Guna              100000      India
+Amit              75000       Nepal
+Surage            200000      USA
+Amirtha           150000      UK
+Balu              85000       India
+Chandra           180000      USA
+Dharsini          140000      Uk
+
+When apply the partion the data will be stored as separate.
+India             Nepal         USA                UK   
+Guna,100000      Amit,75000    Surage,200000      Amirtha,150000
+Balu,85000                     Chandra,18000      Dharsini,140000
+
+Static Partition :
+       # We know which partition data will get loaded.
+       
+Create table static_partition_data(
+employee_name string,
+salary   int
+)
+partition by (city string);
+       
+ insert into static_partition_data (country='India') select * from employee where country='India'
+
+Dynamin Partition :
+       # The Column size was not fixed at the data injection time.
+      
+Create table static_partition_data(
+employee_name string,
+salary   int
+) partition by (country string);
+set hive.exec.dynamic.partition.mode=nonstrict;
+       
+ insert into static_partition_data (country) select * from employee where country='India
+       
+       
