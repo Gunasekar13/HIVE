@@ -1,0 +1,21 @@
+1️⃣ Partitioning:
+✍ Partitioning is logically dividing data into parts and then skipping few parts to get optimization. This is called partition pruning.
+
+When to use Partitioning -
+✍ when we have to filter the data in where clause and the filter column is having a SMALL number of distinct values (cardinality is low)
+then we can go with partitioning.
+for example: partitioning on State column.
+
+
+2️⃣ Bucketing
+✍ Bucketing is dividing the data into fixed number of parts based on a hash function and then skipping few parts to get optimization.
+
+When to use Bucketing -
+✍ when we have to filter the data in where clause and the filter column is having a LARGE number of distinct values (cardinality is high)
+then we can go with fixed number of buckets.
+for example: bucketing on Customer_id column
+
+3️⃣ Shuffling:
+✍ when talking about aggregations, we would have to send the local aggregate output to a final machine where final aggregation
+will be done.
+✍ However, we always want to minimize the shuffle as it is costly and require data transfer.
