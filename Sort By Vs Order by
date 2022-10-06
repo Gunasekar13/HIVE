@@ -1,0 +1,7 @@
+When should we use SORT BY instead of ORDER BY?
+===========================================
+
+Despite ORDER BY we should use SORT BY. Especially while we have to sort huge datasets. The reason is SORT BY clause sorts the data using multiple reducers. 
+ORDER BY sorts all of the data together using a single reducer.
+
+Hence, using ORDER BY will take a lot of time to execute a large number of inputs
