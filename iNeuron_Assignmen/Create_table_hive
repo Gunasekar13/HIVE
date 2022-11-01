@@ -1,1 +1,32 @@
+# Assignment Dataset
 
+https://www.kaggle.com/datasets/imdevskp/corona-virus-report
+
+
+
+create table if not exists Country_wise_data
+    > (
+    > country varchar(25),
+    > Region int,
+    > Confirmed int,
+    > Deaths int,
+    > Recovered int,
+    > Active int,
+    > New_cases int,
+    > New_deaths int,
+    > New_recovered int,
+    > Deaths_dividedby_100_Cases decimal(5,2),
+    > Recovered_dividedby_100_Cases decimal(5,2),
+    > Deaths_dividedby_100_Recovered decimal(5,2),
+    > Confirmed_last_week int,
+    > 1_week_change int,
+    > 1_week_percentage_increase decimal(5,2),
+    > WHO_Region varchar(25)
+    > )
+    > row format delimited
+    > fields terminated by ','
+    > ;
+hive> load data local inpath '/config/workspace/.vscode/Covid_data/country_wise_latest.csv' into table Country_wise_data
+    > ;
+hive> select *from Country_wise_data
+    > ;
