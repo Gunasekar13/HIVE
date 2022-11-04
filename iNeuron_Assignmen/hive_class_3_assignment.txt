@@ -83,10 +83,32 @@ hive> insert into table sales_order_orc select *from sales_order_data;
 7. Perform below menioned queries on "sales_order_orc" table :
 
    a. Calculatye total sales per year
+   
+      hive> select year_id,sum(sales)as total_sales from sales_order_data_orc
+          > group by year_id;
+          
    b. Find a product for which maximum orders were placed
-   c. Calculate the total sales for each quarter
+   
+      hive> select QUANTITYORDERED,CITY,STATE,COUNTRY from sales_order_data_orc
+          > where QUANTITYORDERED=(select max(QUANTITYORDERED) from sales_order_data_orc);
+          
+   c. Calculate the total sales for each quarter  
+      
+      hive> select QTR_ID,YEAR_ID , sum(sales)as total_sales from sales_order_data_orc
+          > group by QTR_ID,YEAR_ID;
+   
    d. In which quarter sales was minimum
+   
+       hive> select QTR_ID,year_id,sales from sales_order_data_orc
+           > where sales=(select min(sales) from sales_order_data_orc);
+           
    e. In which country sales was maximum and in which country sales was minimum
+      hive> select country,sales from sales_order_data_orc
+          > where sales=(select max(sales) from sales_order_data_orc)
+          > union all
+          > select country,sales  from sales_order_data_orc
+          > where sales=(select min(sales) from sales_order_data_orc);
+          
    f. Calculate quartelry sales for each city
    h. Find a month for each year in which maximum number of quantities were sold
    
