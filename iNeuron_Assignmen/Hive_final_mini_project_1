@@ -21,11 +21,35 @@ Note: both files are csv files.
        > Group by Agent_Name;
        
 5. Total working days for each agents 
+
+   hive> select Agent_Name,count(Dates) from AgentPerformance
+    > group by Agent_Name;
+    
 6. Total query that each agent have taken 
+
+   hive> select Agent_Name,sum(Total_Chats) from AgentPerformance
+       > group by Agent_Name;
+       
 7. Total Feedback that each agent have received 
-8. Agent name who have average rating between 3.5 to 4 
-9. Agent name who have rating less than 3.5 
-10. Agent name who have rating more than 4.5 
+
+   hive> select Agent_Name,sum(Total_Feedback) from AgentPerformance
+    > group by Agent_Name;
+    
+8. Agent name who have average rating between 3.5 to 4
+
+   hive> select Agent_Name,Average_Rating from AgentPerformance
+       > where Average_Rating between 3.5 and 4;
+       
+9. Agent name who have rating less than 3.5
+
+   hive> select Agent_Name,Average_Rating from AgentPerformance
+       > where Average_Rating<3.5;
+       
+10. Agent name who have rating more than 4.5
+
+    hive> select Agent_Name,Average_Rating from AgentPerformance
+        > where Average_Rating>4.5;
+        
 11. How many feedback agents have received more than 4.5 average
 12. average weekly response time for each agent 
 13. average weekly resolution time for each agents 
