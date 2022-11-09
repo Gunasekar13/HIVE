@@ -51,6 +51,10 @@ Note: both files are csv files.
         > where Average_Rating>4.5;
         
 11. How many feedback agents have received more than 4.5 average
+    
+    hive> with cte as(select Agent_name,avg(Total_feedback)as avg_feedback from AgentPerformance group by Agent_name)
+    > select count(*)as count from cte where avg_feedback>4.5;
+    
 12. average weekly response time for each agent 
 13. average weekly resolution time for each agents 
 14. Find the number of chat on which they have received a feedback 
