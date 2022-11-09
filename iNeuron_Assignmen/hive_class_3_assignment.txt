@@ -116,10 +116,10 @@ hive> insert into table sales_order_orc select *from sales_order_data;
           
    h. Find a month for each year in which maximum number of quantities were sold
       hive> with cte as(select MONTH_ID,YEAR_ID,QUANTITYORDERED,
-    > rank() over(partition by year_id order by QUANTITYORDERED desc)as max_QUANTITYORDERED
-    > from sales_order_data)
-    > select MONTH_ID,YEAR_ID,QUANTITYORDERED from cte where max_QUANTITYORDERED=1
-    > group by MONTH_ID,YEAR_ID,QUANTITYORDERED;
+          > rank() over(partition by year_id order by QUANTITYORDERED desc)as max_QUANTITYORDERED
+          > from sales_order_data)
+          > select MONTH_ID,YEAR_ID,QUANTITYORDERED from cte where max_QUANTITYORDERED=1
+          > group by MONTH_ID,YEAR_ID,QUANTITYORDERED;
    
      
      
