@@ -86,7 +86,43 @@ So, how will you solve this problem where we want to create a single Hive table 
                 > tblproperties('skip.header.line.count'='1');
          # load the file
              hive> insert overwrite table seq_table select * from sample_table;
-             
+
+8. LOAD DATA LOCAL INPATH ‘Home/country/state/’ OVERWRITE INTO TABLE address;
+The following statement failed to execute. What can be the cause?
+      Hive local inpath should contain a file only not directory.
+ 
+9. Is it possible to add 100 nodes when we already have 100 nodes in Hive? If yes, how?
+
+       Yes, It is possible. follow the below step.
+       step 1: take  a new system, create username and password
+       step 2: install SSH and with master node setup SSH connections 
+       step 3: Add ssh public_rsa id key to authorized keys file
+       step 4: Add the new DataNode hostname, IP address, and other details in /etc/hosts slaves file:
+               192.168.1.102 slave3.in slave3
+       Step 5: Start the DataNode on a new node
+       Step 6: Login to the new node like suhadoop or:
+               ssh -X hadoop@192.168.1.103
+       Step 7: Start HDFS of the newly added slave node by using the following command:
+               ./bin/hadoop-daemon.sh start data node
+               
+Hive Practical questions:
+
+Hive Join operations
+
+Create a  table named CUSTOMERS(ID | NAME | AGE | ADDRESS   | SALARY)
+Create a Second  table ORDER(OID | DATE | CUSTOMER_ID | AMOUNT)
+
+Now perform different joins operations on top of these tables
+(Inner JOIN, LEFT OUTER JOIN ,RIGHT OUTER JOIN ,FULL OUTER JOIN)
+
+Inner JOIN :
+        
+
+BUILD A DATA PIPELINE WITH HIVE
+
+
+
+
              
             
             
