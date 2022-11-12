@@ -1,5 +1,5 @@
 Scenario Based questions:
-
+-------- ----- ---------
 1. Will the reducer work or not if you use “Limit 1” in any HiveQL query?
       
       It depends on the query.
@@ -104,9 +104,9 @@ The following statement failed to execute. What can be the cause?
                ssh -X hadoop@192.168.1.103
        Step 7: Start HDFS of the newly added slave node by using the following command:
                ./bin/hadoop-daemon.sh start data node
-               
+_____________________________________________________________________________________________________________________________              
 Hive Practical questions:
-
+---- --------- ---------
 Hive Join operations
 
 Create a  table named CUSTOMERS(ID | NAME | AGE | ADDRESS   | SALARY)
@@ -114,6 +114,33 @@ Create a Second  table ORDER(OID | DATE | CUSTOMER_ID | AMOUNT)
 
 Now perform different joins operations on top of these tables
 (Inner JOIN, LEFT OUTER JOIN ,RIGHT OUTER JOIN ,FULL OUTER JOIN)
+
+hive> Create table CUSTOMERS(
+    > ID int,
+    > NAME string,
+    > AGE int,
+    > ADDRESS string,
+    > SALARY int
+    > )
+    > row format delimited
+    > fields terminated by ','
+    > tblproperties('skip.header.line.count'='1');
+ 
+hive> load data local inpath '/config/workspace/customer.txt' into table CUSTOMERS;
+
+hive> Create table ORDERS(
+    > OID int,DATES string,
+    > CUSTOMER_ID int,
+    > AMOUNT int
+    > )
+    > row format delimited
+    > fields terminated by ','
+    > tblproperties('skip.header.line.count'='1'
+    > );
+    
+hive> Load data local inpath '/config/workspace/Order.txt' into table ORDERS;
+
+
 
 Inner JOIN :
         
