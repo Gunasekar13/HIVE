@@ -140,7 +140,33 @@ hive> Create table ORDERS(
     
 hive> Load data local inpath '/config/workspace/Order.txt' into table ORDERS;
 
+hive> set hive.enforce.bucketing=true;
+hive> Create table BUCK_CUSTOMERS(
+    > ID int,
+    > NAME string,
+    > AGE int,
+    > ADDRESS string,
+    > SALARY int
+    > )
+    > row format delimited
+    > fields terminated by ',';
+   
+hive> insert overwrite table BUCK_CUSTOMERS select *from CUSTOMERS;
 
+hive> Create table BUCK_ORDERS(
+    > OID int,
+    > DATES string,
+    > CUSTOMER_ID int,
+    > AMOUNT int
+    > )
+    > row format delimited
+    > fields terminated by ','
+    > ;
+   
+hive> insert overwrite table BUCK_ORDERS select *from ORDERS;
+hive> set hive.auto.convert.join=false;
+hive> select *from BUCK_CUSTOMERS C inner join BUCK_ORDERS O
+    > on C.ID=O.CUSTOMER_ID;
 
 Inner JOIN :
         
