@@ -141,27 +141,28 @@ hive> Create table ORDERS(
 hive> Load data local inpath '/config/workspace/Order.txt' into table ORDERS;
 
 hive> set hive.enforce.bucketing=true;
-hive> Create table BUCK_CUSTOMERS(
-    > ID int,
-    > NAME string,
-    > AGE int,
-    > ADDRESS string,
-    > SALARY int
+hive> create table buck_customers(
+    > id int,
+    > name string,
+    > age int,
+    > location string,
+    > salary int
     > )
-    > row format delimited
-    > fields terminated by ',';
+    > clustered by (id)
+    > sorted by (id)
+    > into 2 buckets;
    
 hive> insert overwrite table BUCK_CUSTOMERS select *from CUSTOMERS;
 
-hive> Create table BUCK_ORDERS(
-    > OID int,
-    > DATES string,
-    > CUSTOMER_ID int,
-    > AMOUNT int
+hive> create table buck_orders(
+    > order_id int,
+    > dates string,
+    > cust_id int,
+    > amount int
     > )
-    > row format delimited
-    > fields terminated by ','
-    > ;
+    > clustered by (cust_id)
+    > sorted by (cust_id)
+    > into 2 buckets;
    
 hive> insert overwrite table BUCK_ORDERS select *from ORDERS;
 hive> set hive.auto.convert.join=false;
