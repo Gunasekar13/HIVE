@@ -38,6 +38,8 @@ Note: both files are csv files.
    
 2. Dump the data inside the hdfs in the given schema location.
 
+hive> load data local inpath '/config/workspace/AgentPerformance.csv' into table AgentPerformance;
+hive> load data local inpath '/config/workspace/AgentLogingReport.csv' into table AgentLoginReport;
 
 3. List of all agents' names. 
 
@@ -45,16 +47,13 @@ Note: both files are csv files.
    
 4. Find out agent average rating.
 
-   hive> select Agent_Name,
-       > Round(avg(Average_Rating),2) as Average_Rating
+   hive> select Agent_Name,Average_Rating
        > from AgentPerformance
-       > Group by Agent_Name;
        
 5. Total working days for each agents 
 
     hive> select agent,count(Login_Time)as working_days from AgentLoginReport 
-        > group by agent
-        > limit 10;
+        > group by agent;
     
 6. Total query that each agent have taken 
 
@@ -86,9 +85,29 @@ Note: both files are csv files.
     hive> with cte as(select Agent_name,avg(Total_feedback)as avg_feedback from AgentPerformance group by Agent_name)
     > select count(*)as count from cte where avg_feedback>4.5;
     
-12. average weekly response time for each agent 
+12. average weekly response time for each agent
+     
+     hive> select agent_name,avg(col[0]*3600+col[1]*60+col[2])/3600 from(
+    > select agent_name,split(average_response_time,':')as col from AgentPerformance)s
+    > group by agent_name;
+    
 13. average weekly resolution time for each agents 
-14. Find the number of chat on which they have received a feedback 
+
+   hive> select agent_name,avg(col[0]*3600+col[1]*60+col[2])/3600 from(
+    > select agent_name,split(average_resolution_time,':')as col from AgentPerformance)s
+    > group by agent_name;
+
+14. Find the number of chat on which they have received a feedback
+
+    hive> select agent_name,sum(total_chat),total_feedback from AgentPerformance
+    > where total_feedback!=0
+    > group by agent_name,total_feedback;
+    
 15. Total contribution hour for each and every agents weekly basis 
+
+   hive> select agent,sum(col[0]*3600+col[1]*60+col[2])/3600,weekly from(
+    > select agent,split(Duration,':')as col,weekofyear(Dates)as weekly from AgentLoginReport)s
+    > group by agent,weekly;
+    
 16. Perform inner join, left join and right join based on the agent column and after joining the table export that data into your local system.
 17. Perform partitioning on top of the agent column and then on top of that perform bucketing for each partitioning.
