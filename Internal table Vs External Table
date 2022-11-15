@@ -1,7 +1,9 @@
 INTERNAL TABLE :
+       In hive managed table meta and actual data stored in HDFS file path.
        # when your drop the internal table the data and meta will be deleted.
        
 EXTERNAL TABLE :
+        IN hive external table meta data stored in hive metastore. Actual data stored in HDFS file path.
         # when you go to drop the External Table the meta data will be deleted from hive.
         # But the actual data will be available in HDFS locations.
         # We can able to recreate the table again.
