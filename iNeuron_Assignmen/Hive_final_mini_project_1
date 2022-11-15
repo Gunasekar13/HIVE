@@ -8,7 +8,37 @@ Note: both files are csv files.
 
 
 1. Create a schema based on the given dataset
+
+  hive>create table AgentPerformance(
+   SL_No int,
+   dates string,
+   Agent_Name string,
+   Total_Chat int,
+   Average_Response_Time string,
+   Average_Resolution_Time string,
+   Average_Rating float,
+   Total_Feedback int
+   )
+   row format delimited
+   fields terminated by ','
+   tblproperties('skip.header.line.count'='1');
+   
+  hive> create table AgentLoginReport(
+    SL_no int,
+    Agent string,
+    Dates string,
+   Login_Time string,
+   Logout_Time string,
+   Duration string
+   )
+   row format delimited
+   fields terminated by ','
+   tblproperties('skip.header.line.count'='1')
+   ;
+   
 2. Dump the data inside the hdfs in the given schema location.
+
+
 3. List of all agents' names. 
 
    hive> select distinct(Agent_Name)as Agent_name from AgentPerformance;
