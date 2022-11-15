@@ -22,8 +22,9 @@ Note: both files are csv files.
        
 5. Total working days for each agents 
 
-   hive> select Agent_Name,count(Dates) from AgentPerformance
-    > group by Agent_Name;
+    hive> select agent,count(Login_Time)as working_days from AgentLoginReport 
+        > group by agent
+        > limit 10;
     
 6. Total query that each agent have taken 
 
