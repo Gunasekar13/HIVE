@@ -1,0 +1,12 @@
+👉#display the employee salary data based on sal in ascending order using "ORDER BY"
+
+hive> select sal from employee order by sal;
+
+(only one reducer will be used to sort the record)
+
+👉#diplay employee sal based on sal 'SORT BY'
+
+hive> select sal from employee sort by sal;
+
+(Two reducers will be used while using 'SORT BY')
+
