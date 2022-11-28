@@ -10,3 +10,7 @@ alter table employee change emp_no EMPNO int;
 
 alter table temp_table add columns (manager_id int);
 
+✍#replace the column name empno to name from temp_table
+
+alter table temp_table replace columns (empno int,name string);
+
