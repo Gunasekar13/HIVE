@@ -1,0 +1,12 @@
+✍#Alter table name emp to employee
+
+alter table emp rename to employee;
+
+✍#Alter table column name emp_no to empno
+
+alter table employee change emp_no EMPNO int;
+
+✍#add new column name as manager_id in temp_table
+
+alter table temp_table add columns (manager_id int);
+
