@@ -15,7 +15,7 @@ hive> select round(123.456879,2);
 Date Functions;
 ===============
 
-Source link: 
+Source link: https://github.com/Gunasekar13/HIVE/blob/main/Udamy/employee_table.csv
 
 👍#Extract year,month,quarter,day,weekofyear from hiredate
 
