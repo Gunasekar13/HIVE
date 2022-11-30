@@ -1,1 +1,13 @@
+✍#Round the integer near by smallest
 
+hive> select ceil(9.5);
+
+✍#Round the integer near by previous integer
+
+hive> select floor(10.6);
+
+✍#Round the integer near by previous integer
+
+hive> select round(123.456879,2);
+
+✍#Round the integer near by previous integer
