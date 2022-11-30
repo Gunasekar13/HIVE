@@ -8,5 +8,16 @@ hive> select sal from employee order by sal;
 
 hive> select sal from employee sort by sal;
 
-(Two reducers will be used while using 'SORT BY')
+(To many reducers will be used while using 'SORT BY')
+
+👉#What is "distribute by"
+
+    Distribute by simply distribute the column among the reducers not involved.
+but together with sort by it will be involved with sorting
+
+👉#What is "culster by"
+
+     It is sort form of "distribute by sort by" command.
+ 
+ 
 
