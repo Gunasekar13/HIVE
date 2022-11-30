@@ -11,3 +11,12 @@ hive> select floor(10.6);
 hive> select round(123.456879,2);
 
 ✍#Round the integer near by previous integer
+------------------------------------------------------------------------------------------------------
+Date Functions;
+===============
+
+Source link: 
+
+👍#Extract year,month,quarter,day from hiredate
+
+
