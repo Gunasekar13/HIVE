@@ -17,9 +17,29 @@ Date Functions;
 
 Source link: 
 
-👍#Extract year,month,quarter,day from hiredate
+👍#Extract year,month,quarter,day,weekofyear from hiredate
 
-
+hive> select hiredate,
+    > year(hiredate) as h_year,
+    > month(hiredate) as h_month,
+    > quarter(hiredate) as h_quarter,
+    > day(hiredate) as h_day,
+    > weekofyear(hiredate) as h_week
+    > from emp;
    
+👍#date add,sub,diff functions from hiredate
+
+    ✔date_add(hiredate,5)
+    ✔date_sub(hiredate,5)
+    ✔datediff(hiredate,prev_date)
+ 
+👍#add months,last_day,next_day functions
+
+    ✔add_months(hiredate,2)
+    ✔last_day(hiredate)
+    ✔next_day(hiredate,'MON')
+    ✔months_between(hiredate,prev_date)
+    
+
 
 
