@@ -1,0 +1,54 @@
+✍#merge the employeename and sal from employee table
+
+hive> select concat(ename,'-',sal)as emp_sal from emp;
+
+✍#find the length of employee name
+
+hive> select ename,length(ename) from emp;
+
+✍# Convert ename to all lowercase, uppercase,initcap
+
+hive> select ename,
+    > lower(ename),
+    > upper(ename),
+    > initcap(ename) from emp;
+--------------------------------------------------------------------------------------------
+Padding functions:
+======= ==========
+✍# Lpad or Rpad
+
+hive> select lpad(ename,8,'@') from emp;
+--------------------------------------------------------------------------------------------
+trim functions:
+===== =========
+✍# It will be remove the empty space
+
+hive> select ltrim('     Maathive') ;
+
+--------------------------------------------------------------------------------------------
+repeat functions:
+====== ==========
+✍# repeat the column
+     ✔repeat(col,count)
+       count- number of times.
+
+hive> select repeat(ename,2) from emp;
+
+✍# Reverse the word
+
+hive> select reverse(ename) from emp;
+
+--------------------------------------------------------------------------------------------
+Split the string:
+===== === =======
+✍# split the string word
+
+hive> select split('hive:hadoop',':') ;
+
+Substr,instr :
+==============
+
+hive> select substr(ename,2,4) from emp;
+
+hive> select instr(ename,'E') from emp;
+
