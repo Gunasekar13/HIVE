@@ -127,6 +127,14 @@ hive> Create table CUSTOMERS(
     > tblproperties('skip.header.line.count'='1');
  
 hive> load data local inpath '/config/workspace/customer.txt' into table CUSTOMERS;
+1       Guna    23      chennai 23000
+2       Anu     22      coimbatore      23000
+3       Amirtha 24      Banglore        26000
+4       Aishu   30      Hyderapad       30000
+5       Arun    26      chennai 25000
+6       Dilli   28      coimbatore      27000
+7       Rolex   25      Hyderapad       30000
+
 
 hive> Create table ORDERS(
     > OID int,DATES string,
@@ -139,37 +147,29 @@ hive> Create table ORDERS(
     > );
     
 hive> Load data local inpath '/config/workspace/Order.txt' into table ORDERS;
+10034   2022-02-15      3       400
+13423   2022-06-12      2       500
+12452   2022-09-11      4       1000
+13423   2022-04-17      1       700
+12456   2022-05-12      7       350
+19874   2022-01-10      6       680
+14732   2022-02-23      5       890
 
-hive> set hive.enforce.bucketing=true;
-hive> create table buck_customers(
-    > id int,
-    > name string,
-    > age int,
-    > location string,
-    > salary int
-    > )
-    > clustered by (id)
-    > sorted by (id)
-    > into 2 buckets;
-   
-hive> insert overwrite table BUCK_CUSTOMERS select *from CUSTOMERS;
-
-hive> create table buck_orders(
-    > order_id int,
-    > dates string,
-    > cust_id int,
-    > amount int
-    > )
-    > clustered by (cust_id)
-    > sorted by (cust_id)
-    > into 2 buckets;
-   
-hive> insert overwrite table BUCK_ORDERS select *from ORDERS;
-hive> set hive.auto.convert.join=false;
-hive> select *from BUCK_CUSTOMERS C inner join BUCK_ORDERS O
-    > on C.ID=O.CUSTOMER_ID;
-
-Inner JOIN :
+✍Inner JOIN :
+    hive> select *from customers c inner join orders o
+    > on c.id=o.cust_id;
+    
+✍LEFT JOIN :
+    hive> select *from customers c LEFT JOIN orders o
+    > on c.id=o.cust_id;
+    
+✍RIGHT JOIN :  
+    hive> select *from customers c RIGHT JOIN orders o
+    > on c.id=o.cust_id;
+    
+✍FULL OUTER JOIN :
+    hive> select *from customers c FULL OUTER JOIN orders o
+    > on c.id=o.cust_id;
         
 
 BUILD A DATA PIPELINE WITH HIVE
