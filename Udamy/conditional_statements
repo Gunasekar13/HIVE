@@ -1,0 +1,19 @@
+✍#when sal is greater then 2000 print sal amount else 0
+
+hive> select if(sal>=2000,sal,0) from emp;
+
+✍#Above Query USE "CASE WHEN STATEMENT"
+
+     It will be use multiple conditional satements,
+
+hive> select ename,
+    > sum(case when sal>2000 then sal else 0 end) as total_sal_above_2000
+    > from emp
+    > group by ename;
+    
+👉Syntax of CASE WHEN Statement👈
+
+   (CASE WHEN condition then 'statement'
+   when cindition2 then 'statement'
+   else 'staement' end) as type
+   
