@@ -52,3 +52,5 @@ hive> select substr(ename,2,4) from emp;
 
 hive> select instr(ename,'E') from emp;
 
+--------------------------------------------------------------------------------------------
+
