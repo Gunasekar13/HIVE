@@ -1,0 +1,74 @@
+✔# What is Explode;
+    
+    Explodes() takes is an array as input and output the elements of array as seperate rows.
+    
+✍Create Array table:
+
+Source data:  101,Amit,HADOOP:HIVE:SPARK:BIG-DATA                                                                                                           
+              102,Sumit,HIVE:OZZIE:HADOOP:SPARK:STORM
+              103,Rohit,KAFKA:CASSANDRA:HBASE
+
+hive> create table array_table (
+    > id int,
+    > name string,
+    > skills array<string>
+    > )
+    > row format delimited
+    > fields terminated by ','
+    > collection items terminated by ':'
+    > ;
+    
+    
+ 👉Explode() function👈
+ 
+ hive> select explode(skills) as my_skill from array_table;
+ 
+ ✔# What is Laterview;
+ 
+    It takes array as input and output array and along with column as seperated rows
+    
+ hive> select id,sep_skill from array_table lateral view explode(skills) skill as sep_skill;
+ 
+ Output:  101     HADOOP
+101     HIVE
+101     SPARK
+101     BIG-DATA                                                                                                           
+102     HIVE
+102     OZZIE
+102     HADOOP
+102     SPARK
+102     STORM
+103     KAFKA
+103     CASSANDRA
+103     HBASE
+
+✍#Create map data table
+
+Source data: 101,Amit,age:21|gender:M                                                                                                                      
+             102,Sumit,age:24|gender:M
+             103,Mansi,age:23|gender:F
+
+hive> create table map_table(
+    > id int,
+    > name string,
+    > details map<string,string>
+    > )
+    > row format delimited 
+    > fields terminated by ','
+    > collection items terminated by '|'
+    > map keys terminated by ':'
+    > ;
+  
+  👉Lateral view function👈
+  
+  hive> select key,value from map_table lateral view explode(details) dumy as key,value;
+  
+Output: 
+age     21
+gender  M                                                                                                                      
+age     24
+gender  M
+age     23
+gender  F
+    
+ 
