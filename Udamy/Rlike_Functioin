@@ -1,0 +1,6 @@
+👉# Find ename having 'ER' in substring
+
+hive> select ename from emp
+    > where ename rlike 'ER';
+    
+👉#
