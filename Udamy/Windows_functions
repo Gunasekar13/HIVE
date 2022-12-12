@@ -1,0 +1,5 @@
+✍What are windows function ?
+   ✔ Rank() - It Skip the sequence
+   ✔ dense_rank() - It cann't skip the sequence
+   ✔ Row_number() - rownumber
+   
