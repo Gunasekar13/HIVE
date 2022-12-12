@@ -1,6 +1,11 @@
+Emp Source data : https://github.com/Gunasekar13/HIVE/blob/main/Udamy/employee_table.csv
+
 👉# Find ename having 'ER' in substring
 
 hive> select ename from emp
     > where ename rlike 'ER';
     
-👉#
+Output :  
+TURNER
+CLERK
+CLERK
