@@ -63,4 +63,8 @@ hive> insert into table employee partition(job) select empno,ename,mgr,hiredate,
        hdfs://localhost/user/hive/warehouse/employee/job=SALESMAN
        
        
-        
+✍ #drop partition 
+
+hive> alter table employee_data drop partition (deptno=10);
+
+
