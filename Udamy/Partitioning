@@ -1,0 +1,66 @@
+In real time we have transform the Terabyte and betabyte of data. we Query particular dept data it will take search unnessery dept also it take time.
+
+for example :
+    We have query to find particular department data.In this case all department will be stored at sub directory.It help us to fast transmission.
+
+👉Before partitioning :
+        hdfs://localhost/user/hive/warehouse/emp
+        
+👉#Partion have two types
+      ✔Static - we know the partition value
+      ✔Dynamic - We don't know the distinct value
+      
+✍ Static Partitioning:
+
+create table employee_table(
+empno int,
+ename string,
+job string,
+mgr int,
+Hiredate date,
+sal int,
+comm int
+)
+partitioned by (deptno int)
+row format delimited
+fields terminated by ','
+stored as textfile;
+
+hive> insert into table employee_table partition(deptno=10) select empno,ename,job,mgr,Hiredate,sal,comm from emp;
+
+👉After partitioning :
+        hdfs://localhost/user/hive/warehouse/employee_table/deptno=10
+        
+✍ Dynamic Partitioning:
+
+By default dynamic partition is disable it. We have to enable it.
+
+hive> set hive.exec.dynamic.partition=true;
+hive> set hive.exec.dynamic.partition.mode=nonstrict;
+
+create table employee(
+empno int,
+ename string,
+mgr int,
+hiredate date,
+sal int,
+comm int
+)
+partitioned by(job string)
+row format delimited
+fields terminated by','
+stored as textfile
+;
+
+----Must mentioned the partition column as last----
+hive> insert into table employee partition(job) select empno,ename,mgr,hiredate,sal,comm,job from emp;
+
+👉After partitioning :
+       
+       hdfs://localhost/user/hive/warehouse/employee/job=CLERK
+       hdfs://localhost/user/hive/warehouse/employee/job=MANAGER
+       hdfs://localhost/user/hive/warehouse/employee/job=PRESIDENT
+       hdfs://localhost/user/hive/warehouse/employee/job=SALESMAN
+       
+       
+        
