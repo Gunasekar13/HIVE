@@ -1,0 +1,6 @@
+If we have large dataset having large no.of partition need bucketing
+
+It decided by "Hashing Algorithom" .
+
+✍#Create bucketing Table
+
