@@ -2,5 +2,22 @@ If we have large dataset having large no.of partition need bucketing
 
 It decided by "Hashing Algorithom" .
 
+By default bucketing is disabled now enabled
+hive> set hive.enforce.bucketing = true;
+hive> set hive.exec.dynamic.partition.mode=nonstrict;
+
 ✍#Create bucketing Table
 
+hive> create table if not exists dept_buck_table (
+    > deptid int,
+    > empname string,
+    > empid int
+    > )
+    > partitioned by (deptname string)
+    > clustered by (location) into 4 buckets
+    > row format delimited
+    > fields terminated by ','
+    > stored as textfile
+    > ;
+    
+    
