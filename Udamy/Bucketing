@@ -1,7 +1,11 @@
 If we have large dataset having large no.of partition need bucketing
 
-It decided by "Hashing Algorithom" .
-
+✔It decided by "Hashing Algorithom" .
+✔We can explicitly set the number of buckets during table creation.
+✔It helps Bucketed map joins are fastest joins.
+   Condition : Both table bucketed same column and should have same no.of buckets. 
+   
+   
 By default bucketing is disabled now enabled
 hive> set hive.enforce.bucketing = true;
 hive> set hive.exec.dynamic.partition.mode=nonstrict;
@@ -9,15 +13,17 @@ hive> set hive.exec.dynamic.partition.mode=nonstrict;
 ✍#Create bucketing Table
 
 hive> create table if not exists dept_buck_table (
-    > deptid int,
-    > empname string,
-    > empid int
-    > )
-    > partitioned by (deptname string)
-    > clustered by (location) into 4 buckets
-    > row format delimited
-    > fields terminated by ','
-    > stored as textfile
-    > ;
+deptid int,
+empname string,
+empid int,
+location string
+)
+partitioned by (deptname string)
+clustered by (location) into 4 buckets
+row format delimited
+fields terminated by ','
+stored as textfile
+;
     
-    
+ hive> insert into table dept_buck_table partition(deptname) select deptid,empname,empid,location,deptname from dept_table;
+ 
