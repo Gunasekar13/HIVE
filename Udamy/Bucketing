@@ -27,3 +27,4 @@ stored as textfile
     
  hive> insert into table dept_buck_table partition(deptname) select deptid,empname,empid,location,deptname from dept_table;
  
+ 
