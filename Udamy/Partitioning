@@ -67,4 +67,22 @@ hive> insert into table employee partition(job) select empno,ename,mgr,hiredate,
 
 hive> alter table employee_data drop partition (deptno=10);
 
+--------------------------------------------------
+✍Multi dynamic partition;
+
+create table multi_part(
+empno int,
+ename string,
+mgr int,
+hiredate date,
+sal int,
+comm int
+)
+partitioned by (deptno int,job string)
+row format delimited 
+fields terminated by ','
+stored as textfile
+;
+
+hive> insert into table multi_part partition (deptno,job) select empno,ename,mgr,hiredate,sal,comm,deptno,job from emp;
 
